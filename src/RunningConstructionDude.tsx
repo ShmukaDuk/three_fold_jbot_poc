@@ -30,23 +30,8 @@ export default function RunningConstructionDude() {
     const interval = setInterval(() => {
       setPositionX((prev) => {
         if (isFacingRight) {
-          if (prev >= 105) {
-            setIsFacingRight(false);
-            // Occasional fun speech when turning
-            if (Math.random() > 0.4) {
-              triggerSpeech("All panels safely delivered! Turning back for more! 🔄");
-            }
-            return 105;
-          }
           return prev + speed;
         } else {
-          if (prev <= -5) {
-            setIsFacingRight(true);
-            if (Math.random() > 0.4) {
-              triggerSpeech("Loading new premium panels for the cold storage warehouse! 🏃");
-            }
-            return -5;
-          }
           return prev - speed;
         }
       });
@@ -54,6 +39,21 @@ export default function RunningConstructionDude() {
 
     return () => clearInterval(interval);
   }, [isFacingRight, isSprinting]);
+
+  // Monitor position and switch directions cleanly to avoid dual-state setter warnings
+  useEffect(() => {
+    if (isFacingRight && positionX >= 105) {
+      setIsFacingRight(false);
+      if (Math.random() > 0.4) {
+        triggerSpeech("All panels safely delivered! Turning back for more! 🔄");
+      }
+    } else if (!isFacingRight && positionX <= -5) {
+      setIsFacingRight(true);
+      if (Math.random() > 0.4) {
+        triggerSpeech("Loading new premium panels for the cold storage warehouse! 🏃");
+      }
+    }
+  }, [positionX, isFacingRight]);
 
   // Rotational randomized dialogue trigger (every 14 seconds)
   useEffect(() => {
