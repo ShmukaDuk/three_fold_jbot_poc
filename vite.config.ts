@@ -5,7 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: './',
+    base: '/three_fold_jbot_poc/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
