@@ -31,6 +31,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import PixelAgent from "./PixelAgent";
+import RunningConstructionDude from "./RunningConstructionDude";
 import { virtualFiles } from "./systemFiles";
 
 // Structured types matching system data
@@ -402,13 +403,13 @@ threefold.net.au`);
                 
                 <div className="max-w-2xl space-y-4 relative z-10">
                   <span className="text-[10px] uppercase font-mono font-bold text-[#2dccd3] tracking-widest bg-cyan-950/40 border border-[#2dccd3]/30 px-3 py-1 rounded-full">
-                    A.I. SUB-CONTRACTOR COMPLIANCE
+                    INTERNAL PORTAL
                   </span>
                   <h1 className="text-3xl sm:text-5xl font-display font-extrabold tracking-tight leading-tight">
-                    Climate Control for Complex Environments
+                    Three Fold AI Workspace
                   </h1>
                   <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
-                    Threefold Insulated Panels is an industry leader providing premium thermal designs and lightweight sandwich panels across Australia. Connect local site dependencies with automated contract compliance trace notices instantly.
+                    Internal portal for commercial insulated panel construction management. Analyze sub-contractor on-site events, track delay damages, and generate contract trace notices.
                   </p>
                   
                   <div className="flex flex-wrap gap-3 pt-2">
@@ -421,6 +422,11 @@ threefold.net.au`);
                       Real-time Standby Logic
                     </div>
                   </div>
+                </div>
+
+                {/* Animated J-Bot Robot Running Track */}
+                <div className="mt-8">
+                  <RunningConstructionDude />
                 </div>
               </div>
 
