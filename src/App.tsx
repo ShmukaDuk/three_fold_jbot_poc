@@ -49,6 +49,22 @@ import { motion, AnimatePresence } from "motion/react";
 import PixelAgent from "./PixelAgent";
 import RunningConstructionDude from "./RunningConstructionDude";
 import TeosSpiderWeb from "./components/TeosSpiderWeb";
+import { 
+  CeoCockpitView, 
+  MainContractorSyncView, 
+  ContractLegalView, 
+  CostBudgetView, 
+  ProcurementSupplierView, 
+  AssetManagementView, 
+  OHSWHSView, 
+  QAITPView, 
+  HRPeopleView, 
+  DesignEngineeringView, 
+  ConstructionDeliveryView, 
+  ClaimsLedgerView, 
+  HandoverWarrantyView, 
+  PolicyGovernanceView 
+} from "./components/ModuleViews";
 import { virtualFiles } from "./systemFiles";
 import { bentoBlocks, teosPillars, TEOSBlock } from "./teosData";
 
@@ -101,7 +117,7 @@ const getBlockIcon = (iconName: string) => {
 
 export default function App() {
   // Navigation State
-  const [currentTab, setCurrentTab] = useState<"teos_dashboard" | "pm_update">("pm_update");
+  const [currentTab, setCurrentTab] = useState<"teos_dashboard" | "pm_update">("teos_dashboard");
   const [selectedBentoBlock, setSelectedBentoBlock] = useState<number | null>(null);
   const [currentProject, setCurrentProject] = useState<"none" | "proj_1" | "proj_2" | "proj_agnostic">("none");
   const [prompt, setPrompt] = useState("");
@@ -450,7 +466,9 @@ threefold.net.au`);
       </header>
 
       {/* Main body area with Framer Motion transitions */}
-      <div className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+      <div className={`flex-1 w-full mx-auto p-4 sm:p-6 lg:p-8 transition-all duration-300 ${
+        currentTab === "teos_dashboard" ? "max-w-[1700px]" : "max-w-7xl"
+      }`}>
         
         <AnimatePresence mode="wait">
           {currentTab === "teos_dashboard" ? (
@@ -497,213 +515,14 @@ threefold.net.au`);
                     }}
                     className="px-5 py-3 text-xs font-display font-bold uppercase tracking-wider rounded-xl bg-gradient-to-r from-[#2dccd3] to-[#6f00ff] text-white hover:brightness-110 shadow-lg active:scale-95 transition-all text-center whitespace-nowrap cursor-pointer"
                   >
-                    Open PM Agent 🚀
+                    AI Knowledge Layer 🚀
                   </button>
                 </div>
               </div>
 
-              {/* Master Layout grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                
-                {/* LEFT CONTEXT (8 columns): Spider Web Layout */}
-                <div className="lg:col-span-8 col-span-12 space-y-6">
-                  <TeosSpiderWeb onSelectBlock={setSelectedBentoBlock} />
-
-                  {/* Interconnected Center: Threefold Single Source of Truth Banner */}
-                  <div className="p-6 rounded-2xl bg-[#0f0228] text-white border border-white/5 space-y-4 shadow-xl">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#2dccd3] to-[#6f00ff] flex items-center justify-center font-bold text-sm text-white">
-                        🗲
-                      </div>
-                      <div>
-                        <h4 className="font-display font-bold text-sm text-white uppercase tracking-wider">Threefold System Hub</h4>
-                        <p className="text-[11px] text-slate-300">Single Source of Truth connecting Commercial, Procurement, and On-Site teams.</p>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                      <div className="p-3 bg-white/5 rounded-xl border border-white/10 text-center">
-                        <span className="text-xs font-mono font-bold text-[#2dccd3] block">100%</span>
-                        <span className="text-[9px] font-mono text-slate-400 block uppercase">AS4902 Safe</span>
-                      </div>
-                      <div className="p-3 bg-white/5 rounded-xl border border-white/10 text-center">
-                        <span className="text-xs font-mono font-bold text-[#2dccd3] block">Automatic</span>
-                        <span className="text-[9px] font-mono text-slate-400 block uppercase">SMTP Dispatch</span>
-                      </div>
-                      <div className="p-3 bg-white/5 rounded-xl border border-white/10 text-center">
-                        <span className="text-xs font-mono font-bold text-[#2dccd3] block">Connected</span>
-                        <span className="text-[9px] font-mono text-slate-400 block uppercase">Procore Cloud</span>
-                      </div>
-                      <div className="p-3 bg-white/5 rounded-xl border border-white/10 text-center">
-                        <span className="text-xs font-mono font-bold text-[#2dccd3] block">Real-time</span>
-                        <span className="text-[9px] font-mono text-slate-400 block uppercase">Standby Audits</span>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-
-                {/* RIGHT COLUMN (4 columns): J-Bot Agent & TEOS Principles */}
-                <div className="lg:col-span-4 space-y-6 col-span-12">
-                  
-                  {/* J-BOT INTERACTIVE EXPERT PANEL */}
-                  <div className="bg-[#180043] text-white rounded-3xl border border-[#2dccd3]/30 shadow-2xl p-6 relative overflow-hidden">
-                    <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#2dccd3] via-[#6f00ff] to-[#280071]"></div>
-                    
-                    <div className="mb-4">
-                      <div className="flex items-center gap-2">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2dccd3] opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#2dccd3]"></span>
-                        </span>
-                        <span className="text-[9px] uppercase font-mono font-bold text-[#2dccd3] tracking-widest block">
-                          THREEFOLD CO-PILOT AGENT
-                        </span>
-                      </div>
-                      <h3 className="font-display font-extrabold text-base text-white mt-1 uppercase">
-                        PM Agent - J-Bot
-                      </h3>
-                      <p className="text-[11px] text-slate-300 leading-normal mt-1 font-sans">
-                        I am currently scanning the physical site logs and checking AS 4902-2006 parameters.
-                      </p>
-                    </div>
-
-                    {/* ANIMATED DUDE IN SIDERAIL */}
-                    <div className="bg-slate-950/40 rounded-2xl p-3 border border-white/5 flex flex-col justify-center items-center my-4 cursor-pointer hover:border-white/15 transition-all w-full"
-                      onClick={() => {
-                        setCurrentTab("pm_update");
-                        setCurrentProject("proj_1");
-                      }}
-                    >
-                      <div className="scale-90 w-full">
-                        <RunningConstructionDude />
-                      </div>
-                      <div className="text-center mt-3 bg-[#110134] rounded-xl p-2.5 border border-[#2dccd3]/30 w-full hover:bg-slate-900 transition-colors">
-                        <span className="text-[11px] font-mono text-[#2dccd3] block font-bold uppercase">Click PM Agent - J-Bot to go to PM Page</span>
-                        <span className="text-[9px] text-slate-300 block mt-0.5">Delay claim active at Sydney Woolies.</span>
-                      </div>
-                    </div>
-
-                    <button
-                      onClick={() => {
-                        setCurrentTab("pm_update");
-                        setCurrentProject("proj_1");
-                        setSpeech("Compliance core activated for Sydney Woolworths delay tracking! Check the summary and email notice draft outputs.");
-                      }}
-                      className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#2dccd3] via-[#6f00ff] to-[#280071] hover:brightness-110 text-white font-display text-xs font-bold uppercase tracking-wider transition-all shadow-lg hover:shadow-xl active:scale-[0.98] flex items-center justify-center gap-2 text-center cursor-pointer"
-                    >
-                      <Sparkles size={13} className="text-cyan-200" />
-                      Open PM Agent
-                      <ArrowRight size={13} />
-                    </button>
-                  </div>
-
-                  {/* INTERACTIVE SUGGESTED SAMPLE PROMPTS BOX */}
-                  <div className="bg-gradient-to-br from-[#110134] to-[#1d0354] rounded-3xl border border-dashed border-[#2dccd3]/40 p-6 space-y-3.5 shadow-lg relative overflow-hidden">
-                    <div className="absolute right-0 top-0 w-24 h-24 bg-[#2dccd3]/5 rounded-full filter blur-xl"></div>
-                    <div className="flex items-center gap-1.5 text-[10px] font-mono font-bold text-[#2dccd3]" id="suggested-queries-hdr">
-                      <Sparkles size={12} className="text-amber-400 animate-pulse" />
-                      <span className="uppercase tracking-wider">Suggested Copilot Query (j-bot query)</span>
-                    </div>
-                    <div>
-                      <p className="text-[11px] text-slate-300 font-sans leading-relaxed">
-                        Query the operating system's sub-modules directly by clicking the sample prompt below:
-                      </p>
-                    </div>
-                    <button
-                      id="order-sample-prompt-btn"
-                      onClick={() => {
-                        setSelectedBentoBlock(5); // Section 5: PROCUREMENT / SUPPLIER CONTROL
-                      }}
-                      className="w-full text-left p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:border-[#2dccd3]/80 hover:bg-white/10 transition-all cursor-pointer group text-slate-100 flex items-start gap-3"
-                    >
-                      <div className="w-5 h-5 rounded-full bg-[#2dccd3]/20 text-[#2dccd3] flex items-center justify-center text-xs font-mono shrink-0 font-bold group-hover:scale-110 transition-transform">
-                        ?
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-xs font-semibold text-slate-200 group-hover:text-white transition-colors font-sans">
-                          "Show me an update on my recent order for xx"
-                        </p>
-                        <span className="text-[9px] font-mono text-slate-400 group-hover:text-[#2dccd3] block transition-colors">
-                          ⚡ Click to instantly open Section 5: Supplier Logistics
-                        </span>
-                      </div>
-                    </button>
-                  </div>
-
-                  {/* TEOS VALUE PILLARS CARD */}
-                  <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-md space-y-4">
-                    <h3 className="font-display font-extrabold text-slate-800 text-xs uppercase tracking-wider pb-2 border-b border-slate-100">
-                      Why Threefold Runs on TEOS
-                    </h3>
-                    <div className="space-y-3.5">
-                      {teosPillars.map((pillar, idx) => (
-                        <div key={idx} className="flex items-start gap-2.5">
-                          <div className="w-5 h-5 rounded-md bg-[#2dccd3]/10 text-[#280071] flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
-                            ✓
-                          </div>
-                          <div>
-                            <h4 className="text-xs font-bold text-slate-850 leading-none">{pillar.title}</h4>
-                            <p className="text-[10px] text-slate-500 mt-1 leading-normal">{pillar.desc}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* DEEP RESEARCH / CORE AGENT STATS */}
-                  <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4 space-y-2">
-                    <div className="flex items-center justify-between text-[10px] font-mono font-bold text-slate-400">
-                      <span>SYSTEM CLUSTERING:</span>
-                      <span className="text-emerald-500 flex items-center gap-1 font-bold">● ONLINE</span>
-                    </div>
-                    <div className="text-[10px] text-slate-500 font-mono leading-relaxed space-y-1">
-                      <div>⚙ Host: Cloud Run Sandbox v2</div>
-                      <div>⚙ Database: Firestore Secure Nodes</div>
-                      <div>⚙ Language Model: Gemini Pro API</div>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-
-              {/* BOTTOM HORIZONTAL SECTIONS: KNOWLEDGE LAYER & IP MODULE */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4 border-t border-slate-200">
-                
-                {/* AI & Knowledge Layer Area */}
-                <div className="bg-white rounded-3xl border border-slate-200 p-6 space-y-4 shadow-sm relative overflow-hidden">
-                  <div className="absolute right-0 top-0 w-12 h-12 bg-blue-500/5 rounded-full filter blur -mr-2 -mt-2"></div>
-                  <div>
-                    <span className="text-[10px] font-mono font-extrabold uppercase text-[#6f00ff] block tracking-wider">INSTITUTIONAL AI CORE</span>
-                    <h3 className="font-display font-extrabold text-base text-[#280071] mt-0.5">AI & Knowledge Layer</h3>
-                    <p className="text-xs text-slate-500 mt-1 leading-relaxed font-sans">Continuous risk intelligence running alongside project execution parameters.</p>
-                  </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2">
-                    {["Smart Search", "Clause Ingress", "Risk Analytics", "Predictive Alerts"].map((f, i) => (
-                      <div key={i} className="p-2 bg-slate-50 border border-slate-100 rounded-xl text-center text-[10px] font-bold text-slate-700">
-                        ✨ {f}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Threefold Systems Module Area */}
-                <div className="bg-white rounded-3xl border border-slate-200 p-6 space-y-4 shadow-sm relative overflow-hidden">
-                  <div className="absolute right-0 top-0 w-12 h-12 bg-[#2dccd3]/5 rounded-full filter blur -mr-2 -mt-2"></div>
-                  <div>
-                    <span className="text-[10px] font-mono font-extrabold uppercase text-[#2dccd3] block tracking-wider">OUR INTELLECTUAL PROPERTY</span>
-                    <h3 className="font-display font-extrabold text-base text-[#280071] mt-0.5">Threefold Systems Module</h3>
-                    <p className="text-xs text-slate-500 mt-1 leading-relaxed font-sans">Integrated component specifications library matching hygienic and cold room standards.</p>
-                  </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2">
-                    {["Sandwich Panels", "PIR Freezer Doors", "Joint Sealant", "Ceiling Suspenders"].map((f, i) => (
-                      <div key={i} className="p-2 bg-slate-50 border border-slate-100 rounded-xl text-center text-[10px] font-bold text-slate-700 font-mono">
-                        📦 {f}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
+              {/* Master Layout - Dynamic Systems Architecture Web Map only */}
+              <div className="w-full">
+                <TeosSpiderWeb onSelectBlock={setSelectedBentoBlock} />
               </div>
 
             </motion.div>
@@ -1306,232 +1125,83 @@ threefold.net.au`);
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md"
           >
             <motion.div
               initial={{ scale: 0.95, y: 15 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 15 }}
-              className="bg-white text-slate-800 rounded-3xl border border-slate-200 shadow-2xl max-w-2xl w-full overflow-hidden flex flex-col max-h-[90vh] text-left"
+              className="bg-slate-950 text-slate-100 rounded-3xl border border-slate-800 shadow-2xl max-w-6xl w-full overflow-hidden flex flex-col max-h-[92vh] text-left"
             >
-              {/* Decorative color top bar */}
-              <div className={`h-2.5 w-full ${
-                block.theme === 'emerald' ? 'bg-emerald-500' :
-                block.theme === 'cyan' ? 'bg-[#2dccd3]' :
-                block.theme === 'blue' ? 'bg-blue-500' :
-                block.theme === 'amber' ? 'bg-amber-500' :
-                block.theme === 'rose' ? 'bg-rose-500' :
-                block.theme === 'purple' ? 'bg-[#6f00ff]' : 'bg-[#280071]'
-              }`} />
-
-              {/* Modal Header */}
-              <div className="p-6 border-b border-slate-100 flex items-start justify-between gap-4">
-                <div>
-                  <span className="text-[10px] font-mono font-bold text-slate-400 uppercase block tracking-wider">
-                    Sector {block.number}
-                  </span>
-                  <h3 className="font-display font-extrabold text-[#280071] text-lg sm:text-xl mt-1">
-                    {block.title}
-                  </h3>
-                </div>
-                <button
-                  onClick={() => setSelectedBentoBlock(null)}
-                  className="p-2 px-3.5 rounded-xl bg-slate-100 font-mono text-xs hover:bg-slate-200 text-slate-600 font-bold transition-colors cursor-pointer"
-                >
-                  ✕ CLOSE
-                </button>
-              </div>
-
-              {/* Scrollable Content */}
-              <div className="p-6 overflow-y-auto space-y-6 text-sm">
-                
-                {/* Slogan Statement */}
-                <div className="bg-[#180043]/5 rounded-2xl p-4 border border-dashed border-[#180043]/10">
-                  <p className="text-[10px] font-mono text-slate-400 uppercase font-bold tracking-widest">Sector Slogan & Focus</p>
-                  <p className="text-xs text-[#280071] font-medium italic mt-1 leading-relaxed font-sans">
-                    "{block.short}"
-                  </p>
-                </div>
-
-                {/* Left/Right parameters grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                  
-                  {/* Left Parameter Info */}
-                  <div className="space-y-4">
-                    <div className="space-y-2">
-                      <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider font-mono flex items-center gap-1.5 border-b border-slate-100 pb-1.5">
-                        <CheckCircle size={13} className="text-emerald-500" />
-                        Key Features & Workflows
-                      </h4>
-                      <ul className="space-y-2">
-                        {block.keyFeatures.map((feat, i) => (
-                          <li key={i} className="text-xs text-slate-600 flex items-start gap-2 font-sans">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#2dccd3] mt-1.5 shrink-0" />
-                            <span>{feat}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {block.benefits && (
-                      <div className="space-y-2 pt-2">
-                        <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider font-mono flex items-center gap-1.5 border-b border-slate-100 pb-1.5">
-                          <Award size={13} className="text-amber-500" />
-                          Business Value Delivered
-                        </h4>
-                        <ul className="space-y-1.5">
-                          {block.benefits.map((b, i) => (
-                            <li key={i} className="text-xs text-slate-600 flex items-start gap-1.5">
-                              <span className="text-emerald-500">▶</span>
-                              <span className="font-sans">{b}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Right Parameter Info */}
-                  <div className="space-y-4">
-                    {block.compliance && (
-                      <div className="space-y-2 animate-fadeIn">
-                        <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider font-mono flex items-center gap-1.5 border-b border-slate-100 pb-1.5">
-                          <Shield size={13} className="text-blue-500" />
-                          Governing Compliance
-                        </h4>
-                        <ul className="space-y-1.5">
-                          {block.compliance.map((c, i) => (
-                            <li key={i} className="text-xs text-slate-700 bg-slate-50 border border-slate-100 p-2 rounded-xl flex items-center gap-2 font-mono">
-                              <span className="text-[#2dccd3] font-bold">✓</span>
-                              <span>{c}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {block.aiCapabilities && (
-                      <div className="space-y-2 pt-1">
-                        <h4 className="text-xs font-bold text-slate-850 uppercase tracking-wider font-mono flex items-center gap-1.5 border-b border-purple-100 pb-1.5">
-                          <Sparkles size={13} className="text-[#6f00ff]" />
-                          Core AI Superpower
-                        </h4>
-                        <ul className="space-y-1.5">
-                          {block.aiCapabilities.map((a, i) => (
-                            <li key={i} className="text-xs text-[#280071] font-semibold bg-purple-50/50 border border-purple-100/40 p-2 rounded-xl flex items-start gap-2">
-                              <span>✨</span>
-                              <span>{a}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {block.scorecard && (
-                      <div className="space-y-1.5 bg-slate-50 p-4 rounded-2xl border border-slate-200">
-                        <h4 className="text-xs font-extrabold text-slate-700 uppercase tracking-widest font-mono">
-                          Scorecard Matrix Metrics
-                        </h4>
-                        <div className="grid grid-cols-2 gap-3.5 pt-2.5 font-mono text-[10px]">
-                          <div>Quality: <span className="text-green-600 font-bold">{block.scorecard.quality}</span></div>
-                          <div>Price Rating: <span className="text-slate-600 font-bold">{block.scorecard.price}</span></div>
-                          <div>SLA Delivery: <span className="text-green-600 font-bold">{block.scorecard.delivery}</span></div>
-                          <div>Safety Performance: <span className="text-emerald-600 font-bold">{block.scorecard.safety}</span></div>
+              <div className="p-6 md:p-8 overflow-y-auto space-y-6">
+                {(() => {
+                  switch (block.id) {
+                    case 1:
+                      return <CeoCockpitView onBackToMap={() => setSelectedBentoBlock(null)} />;
+                    case 2:
+                      return <MainContractorSyncView onBackToMap={() => setSelectedBentoBlock(null)} />;
+                    case 3:
+                      return (
+                        <ContractLegalView 
+                          onBackToMap={() => setSelectedBentoBlock(null)} 
+                          onDispatchAI={(txt) => {
+                            setSelectedBentoBlock(null);
+                            setCurrentTab("pm_update");
+                            setSpeech(txt || "AI compliance gate active for contract delay simulation.");
+                          }} 
+                        />
+                      );
+                    case 4:
+                      return <CostBudgetView onBackToMap={() => setSelectedBentoBlock(null)} />;
+                    case 5:
+                      return <ProcurementSupplierView onBackToMap={() => setSelectedBentoBlock(null)} />;
+                    case 6:
+                      return <AssetManagementView onBackToMap={() => setSelectedBentoBlock(null)} />;
+                    case 7:
+                      return <OHSWHSView onBackToMap={() => setSelectedBentoBlock(null)} />;
+                    case 8:
+                      return <QAITPView onBackToMap={() => setSelectedBentoBlock(null)} />;
+                    case 9:
+                      return <HRPeopleView onBackToMap={() => setSelectedBentoBlock(null)} />;
+                    case 10:
+                      return <DesignEngineeringView onBackToMap={() => setSelectedBentoBlock(null)} />;
+                    case 11:
+                      return <ConstructionDeliveryView onBackToMap={() => setSelectedBentoBlock(null)} />;
+                    case 12:
+                      return (
+                        <ClaimsLedgerView 
+                          onBackToMap={() => setSelectedBentoBlock(null)} 
+                          onDispatchAI={(txt) => {
+                            setSelectedBentoBlock(null);
+                            setCurrentTab("pm_update");
+                            setSpeech(txt || "AI statutory billing claim log loaded successfully.");
+                          }} 
+                        />
+                      );
+                    case 13:
+                      return <HandoverWarrantyView onBackToMap={() => setSelectedBentoBlock(null)} />;
+                    case 14:
+                      return <PolicyGovernanceView onBackToMap={() => setSelectedBentoBlock(null)} />;
+                    default:
+                      return (
+                        <div className="text-center py-12 space-y-4">
+                          <p className="text-slate-400">Loading module {block.title}...</p>
+                          <button
+                            onClick={() => setSelectedBentoBlock(null)}
+                            className="px-4 py-2 bg-white/10 rounded-xl font-mono text-xs hover:bg-white/25"
+                          >
+                            ✕ Close
+                          </button>
                         </div>
-                      </div>
-                    )}
-
-                    {block.insights && (
-                      <div className="space-y-2">
-                        <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider font-mono flex items-center gap-1.5 border-b border-slate-100 pb-1.5">
-                          <Info size={13} className="text-indigo-500" />
-                          Analytical Insight
-                        </h4>
-                        <ul className="space-y-1">
-                          {block.insights.map((ins, i) => (
-                            <li key={i} className="text-xs text-slate-600 flex items-start gap-2 font-mono">
-                              <span className="text-purple-500 font-bold mt-0.5">❖</span>
-                              <span>{ins}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {block.workflow && (
-                      <div className="space-y-2">
-                        <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider font-mono border-b border-slate-100 pb-1.5">
-                          EOT Pipeline Stage
-                        </h4>
-                        <div className="flex flex-wrap gap-1.5 pt-1">
-                          {block.workflow.map((step, i) => (
-                            <span key={i} className={`text-[9px] font-mono px-2 py-1 rounded font-bold uppercase ${
-                              i === 1 ? 'bg-gradient-to-r from-[#2dccd3] to-[#6f00ff] text-white animate-pulse' : 'bg-slate-100 text-slate-500'
-                            }`}>
-                              {step}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {block.connected && (
-                      <div className="space-y-2">
-                        <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider font-mono flex items-center gap-1.5 border-b border-slate-100 pb-1.5">
-                          Synced Integrations
-                        </h4>
-                        <ul className="space-y-1">
-                          {block.connected.map((con, i) => (
-                            <li key={i} className="text-xs text-slate-600 flex items-center gap-2">
-                              <span className="text-cyan-500 font-bold">⇄</span>
-                              <span>{con}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {block.aiSummary && (
-                      <div className="space-y-1.5 bg-[#180043] p-3.5 rounded-2xl border border-white/5 text-white">
-                        <h4 className="text-[9px] font-mono font-bold text-[#2dccd3] uppercase tracking-widest">
-                          Daily AI Core Log summary
-                        </h4>
-                        <p className="text-[11px] font-sans leading-relaxed text-slate-200 mt-1 italic">
-                          "{block.aiSummary}"
-                        </p>
-                      </div>
-                    )}
-
-                  </div>
-                </div>
-
-                {/* Integrated CTA trigger if block is relevant */}
-                {(block.id === 3 || block.id === 12) && (
-                  <div className="p-4 bg-gradient-to-tr from-[#180043] to-[#280071] rounded-2xl border border-white/10 text-white flex flex-col sm:flex-row items-center justify-between gap-4 mt-4">
-                    <div>
-                      <h5 className="font-display font-bold text-sm text-[#2dccd3] uppercase">AI Compliance simulation Connected</h5>
-                      <p className="text-[11px] text-slate-300 mt-0.5 leading-relaxed font-sans">PM Agent - J-Bot is ready to analyze site raw timelines and generate automated legal AS 4902 trace notices instant dispatch drafts.</p>
-                    </div>
-                    <button
-                      onClick={() => {
-                        setSelectedBentoBlock(null);
-                        setCurrentTab("pm_update");
-                        setCurrentProject("proj_1");
-                        setSpeech("Compliance sandbox activated for Sydney Woolworths milestone update! Auditable event delay parameters preloaded successfully.");
-                      }}
-                      className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#2dccd3] to-[#6f00ff] text-white font-bold text-xs uppercase tracking-wider whitespace-nowrap active:scale-95 transition-all shadow cursor-pointer text-center"
-                    >
-                      Audit sydney site 🚀
-                    </button>
-                  </div>
-                )}
-
+                      );
+                  }
+                })()}
               </div>
 
               {/* Modal Footer */}
-              <div className="p-4 bg-slate-50 border-t border-slate-100 flex justify-between items-center text-[9px] text-slate-400 font-mono">
+              <div className="p-4 bg-slate-900/90 border-t border-slate-800 flex justify-between items-center text-[9px] text-slate-400 font-mono">
                 <span>POC INTELLIGENCE LEVEL: 100% SPEC ACCURATE</span>
-                <span>THREEFOLD INTERNAL OPERATIONS CRM</span>
+                <span>TEOS CORE INTEGRATED MICRO-WORKFOUNDRY</span>
               </div>
             </motion.div>
           </motion.div>
