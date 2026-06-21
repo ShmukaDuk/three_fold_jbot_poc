@@ -1,0 +1,6 @@
+{
+  "name": "Three Fold Panel Agent Portal",
+  "description": "Proof-of-concept portal for Three Fold Panel construction, displaying real-time agent workflow automation, contract tracing, project Gantt chart, metrics, and email dispatch.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
